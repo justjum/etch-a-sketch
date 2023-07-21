@@ -3,7 +3,7 @@
 //create work-grid (16x16 grid of square divs)
 
 
-function drawSketchpad(z = 16) {
+function drawSketchpad(z) {
 
     const sketchpad = document.querySelector(".sketchpad");
 
@@ -19,30 +19,45 @@ function drawSketchpad(z = 16) {
     rows.forEach(row => {
         for (let y=0; y<z; y++) {
             const square = document.createElement('div');
-            square.setAttribute('style', 'border: 1px solid black; width: 10px; height: 10px;');
+            square.setAttribute('style', 'outline: 1px  solid black; width: 9px; height: 9px;');
             square.setAttribute('class', 'square');
             row.appendChild(square);
         }
     });
 
+    addColor();
+
 }
 
-drawSketchpad();
+drawSketchpad(z=16);
 
 //function for hover over square
 
-const squares = document.querySelectorAll('.square');
-console.log(squares);
+function addColor() {
 
-squares.forEach(square => {
-    console.log(square);
-    square.addEventListener = ("mouseover", alert('hello'));
+    const squares = document.querySelectorAll('.square');
+
+    //function to activate square
     
-})
+    squares.forEach((square) => {
+        
+        square.addEventListener('mousedown', function() {
+            square.style.backgroundColor = "black";    
+        }); 
+        
+        square.addEventListener('mouseover', function(e) {
+        
+        if (e.buttons === 1) {
+            square.style.backgroundColor = "black";
+        }
+        });
+        
+    });
+
+}
 
 
 
-//function to activate square
 
 
 
@@ -52,4 +67,21 @@ squares.forEach(square => {
 
 //function to create custom grid (keep below 100x100) (button + prompt)
 
+const newGrid = document.querySelector('.changeGrid');
+newGrid.addEventListener('click', function() {
+    changeGrid()
+});
 
+
+function changeGrid() {
+    let gridSize = prompt("Enter new grid size (max 64):")
+    if (gridSize > 64) {
+        changeGrid();
+    }
+    else {
+        const sketchpad = document.querySelector(".sketchpad");
+        sketchpad.innerHTML = '';
+        console.log(sketchpad);
+        drawSketchpad(gridSize);
+    }
+}
