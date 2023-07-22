@@ -1,5 +1,6 @@
 * {
     font-family:'Courier New', Courier, monospace;
+    
 }
 
 .header h1 {
@@ -10,11 +11,18 @@
 
 .container {
     display: flex;
-    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     
+}
+
+.mainContainer {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .controls {
@@ -73,4 +81,9 @@ h2, h3 {
 
 .square:hover {
     background-color: rgb(141, 137, 137);
+}
+
+button {
+    font-size:medium;
+    padding: 5px;
 }
