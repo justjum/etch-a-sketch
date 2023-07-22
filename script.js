@@ -19,7 +19,7 @@ function drawSketchpad(z) {
     rows.forEach(row => {
         for (let y=0; y<z; y++) {
             const square = document.createElement('div');
-            square.setAttribute('style', 'outline: 1px  solid black; width: 9px; height: 9px;');
+            square.setAttribute('style', 'outline: 1px  solid black; width: 3em; height: auto;');
             square.setAttribute('class', 'square');
             row.appendChild(square);
         }
