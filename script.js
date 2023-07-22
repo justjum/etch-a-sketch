@@ -3,6 +3,7 @@
 //create work-grid (16x16 grid of square divs)
 let colorMode = 'black';
 
+//function to create sketchpad with "z x z" grid
 function drawSketchpad(z) {
 
     const sketchpad = document.querySelector(".sketchpad");
@@ -10,8 +11,9 @@ function drawSketchpad(z) {
 
         for (let y=0; y<(z*z); y++) {
             const square = document.createElement('div');
+            // calculation to calculate % sizing of squares
             const percent = (1/z*100);
-            console.log(percent);
+            //console.log(percent);
             square.setAttribute('style', `width: ${percent}%; height: ${percent}%;`);
             square.setAttribute('class', 'square');
             sketchpad.appendChild(square);
@@ -85,15 +87,25 @@ function changeGrid() {
 
 // function clear grid
 
-function clearGrid() {
+const clear = document.querySelector(".clearGrid")
+clear.addEventListener('click', function() {
+    clearGrid();
+});
 
+function clearGrid() {
+    const squares = document.querySelectorAll('.square');
+    //console.log(squares);
+    squares.forEach((square) => {
+    square.style.backgroundColor = "white";
+    });
+    
 }
 
 
 // function change colour scheme
 
 const colorSelection = document.querySelectorAll('.colorSelection');
-console.log(colorSelection);
+//console.log(colorSelection);
 colorSelection.forEach((colorOption) => {
     colorOption.addEventListener('click', function(e) {
             console.log(e.srcElement.id);
@@ -119,9 +131,13 @@ function color() {
     
 }
 
+// function to calculate a random RGB integer (0-255)
+
 function randomInteger(max) {
     return Math.floor(Math.random()*(max +1));
 }
+
+// function to produce an RGB string to insert in DOM
 
 function randomColor() {
     let r = randomInteger(255);
